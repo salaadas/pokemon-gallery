@@ -39,15 +39,15 @@ const SearchBar = ({ loading, setState }) => {
         form={form}
       >
         <Form.Item
-          label="Query"
+          label="query"
           name="query"
-          rules={[{ required: true, message: "Please enter a pokemon's name" }]}
+          rules={[{ required: true, message: "please enter a pokemon's name" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 11, span: 6 }}>
           <Button disabled={loading} type="primary" htmlType="submit">
-            Submit
+            submit
           </Button>
         </Form.Item>
       </Form>

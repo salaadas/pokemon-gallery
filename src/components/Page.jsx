@@ -10,7 +10,7 @@ const { Header, Sider, Content } = Layout;
 
 const Page = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const [page, setPage] = useState('Search');
+  const [page, setPage] = useState('search');
 
   const handleCollapse = (col) => setCollapsed(col);
   const handleRoute = () => console.log('switching route...');
@@ -21,13 +21,13 @@ const Page = ({ children }) => {
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<SearchOutlined />} onClick={handleRoute}>
-            Search
+            search
           </Menu.Item>
           <Menu.Item key="2" icon={<PictureOutlined />} onClick={handleRoute}>
-            Gallery
+            gallery
           </Menu.Item>
           <Menu.Item key="3" icon={<SmileOutlined />} onClick={handleRoute}>
-            Pokemon of the day
+            pokemon of the day
           </Menu.Item>
         </Menu>
       </Sider>
@@ -38,7 +38,7 @@ const Page = ({ children }) => {
         >
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>home</Breadcrumb.Item>
               <Breadcrumb.Item>{page}</Breadcrumb.Item>
             </Breadcrumb>
           </Content>

@@ -7,6 +7,9 @@ const Wrapper = ({ children }) => {
       style={{
         overflow: 'hidden',
         position: 'relative',
+        msUserSelect: 'none',
+        MozUserSelect: 'none',
+        WebkitUserSelect: 'none',
       }}
     >
       {children}
