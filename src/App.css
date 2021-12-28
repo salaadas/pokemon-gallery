@@ -1,5 +1,12 @@
 @import '~antd/dist/antd.css';
 
+#App {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #90aaf5;
+}
+
 .App {
   text-align: center;
 }

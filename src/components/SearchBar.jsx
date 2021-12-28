@@ -5,6 +5,7 @@ import Togglable from './Togglable';
 
 const SearchBar = ({ loading, setState }) => {
   const [query] = useState('');
+  const [form] = Form.useForm();
   const searchRef = useRef();
 
   const search = ({ query }) => {
@@ -19,6 +20,7 @@ const SearchBar = ({ loading, setState }) => {
         setState({ loading: false, error: err, data: null });
       });
 
+    form.resetFields();
     searchRef.current.toggleVisibility();
   };
 
@@ -27,13 +29,14 @@ const SearchBar = ({ loading, setState }) => {
       <Form
         name="basic"
         labelCol={{ span: 7 }}
-        initialValues={{ query }}
+        defaultValue={{ query }}
         wrapperCol={{ span: 10 }}
         onFinish={search}
         onFinishFailed={(err) => console.error(err.message)}
         autoCapitalize="off"
         autoCorrect="off"
         autoSave="off"
+        form={form}
       >
         <Form.Item
           label="Query"

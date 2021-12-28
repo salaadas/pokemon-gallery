@@ -1,6 +1,6 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons/lib/icons';
-import { Alert, Card } from 'antd';
-import React, { useState } from 'react';
+import { Alert, Avatar, Card } from 'antd';
+import React, { useEffect, useState } from 'react';
 import List from './List';
 
 const { Meta } = Card;
@@ -10,6 +10,21 @@ const Pokemon = ({ data }) => {
     height: data.height,
   };
   const [description, setDescription] = useState(() => initialDescription);
+  const [currentImage, setCurrentImage] = useState(data.sprites.front_default);
+
+  useEffect(() => {
+    const images = [data.sprites.front_default, data.sprites.back_default];
+    let idx = 0;
+
+    const switchImg = setInterval(() => {
+      idx = (idx + 1 + images.length) % images.length;
+      setCurrentImage(images[idx]);
+    }, 2000);
+
+    return () => {
+      clearInterval(switchImg);
+    };
+  }, [data]);
 
   const showMore = () => {
     setDescription((desc) => ({
@@ -37,13 +52,17 @@ const Pokemon = ({ data }) => {
       cover={
         <img
           alt={data.name}
-          src={data.sprites.front_default}
+          src={currentImage}
           style={{ width: 300, height: 'auto', margin: 'auto' }}
         />
       }
       actions={toggleIcons}
     >
-      <Meta title={data.name} description={<List items={description} />} />
+      <Meta
+        avatar={<Avatar src={currentImage} />}
+        title={data.name}
+        description={<List items={description} />}
+      />
     </Card>
   );
 };
