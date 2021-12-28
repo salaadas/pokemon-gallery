@@ -1,6 +1,7 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons/lib/icons';
 import { Alert, Card } from 'antd';
 import React, { useState } from 'react';
+import List from './List';
 
 const { Meta } = Card;
 
@@ -30,18 +31,6 @@ const Pokemon = ({ data }) => {
     <PlusOutlined key="plus" onClick={showMore} />,
   ]);
 
-  const showDescription = () => {
-    return (
-      <ul>
-        {Object.keys(description).map((k) => (
-          <li key={k}>
-            {k}: {description[k]}
-          </li>
-        ))}
-      </ul>
-    );
-  };
-
   return (
     <Card
       style={{ width: 500 }}
@@ -54,7 +43,7 @@ const Pokemon = ({ data }) => {
       }
       actions={toggleIcons}
     >
-      <Meta title={data.name} description={showDescription()} />
+      <Meta title={data.name} description={<List items={description} />} />
     </Card>
   );
 };

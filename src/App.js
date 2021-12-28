@@ -7,7 +7,14 @@ function App() {
   const [state, setState] = useState({ loading: false, error: '', data: null });
 
   return (
-    <div>
+    <div
+      style={{
+        MozUserSelect: 'none',
+        WebkitUserSelect: 'none',
+        msUserSelect: 'none',
+        userSelect: 'none',
+      }}
+    >
       <SearchBar loading={state.loading} setState={setState} />
       <DisplayPokemon state={state} />;
     </div>

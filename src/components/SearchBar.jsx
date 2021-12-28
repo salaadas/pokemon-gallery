@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
+import Togglable from './Togglable';
 
 const SearchBar = ({ loading, setState }) => {
   const [query] = useState('');
+  const searchRef = useRef();
 
   const search = ({ query }) => {
     setState((d) => ({ ...d, loading: true }));
@@ -16,33 +18,37 @@ const SearchBar = ({ loading, setState }) => {
       .catch((err) => {
         setState({ loading: false, error: err, data: null });
       });
+
+    searchRef.current.toggleVisibility();
   };
 
   return (
-    <Form
-      name="basic"
-      labelCol={{ span: 8 }}
-      initialValues={{ query }}
-      wrapperCol={{ span: 9 }}
-      onFinish={search}
-      onFinishFailed={(err) => console.error(err.message)}
-      autoCapitalize="off"
-      autoCorrect="off"
-      autoSave="off"
-    >
-      <Form.Item
-        label="Query"
-        name="query"
-        rules={[{ required: true, message: "Please enter a pokemon's name" }]}
+    <Togglable ref={searchRef}>
+      <Form
+        name="basic"
+        labelCol={{ span: 7 }}
+        initialValues={{ query }}
+        wrapperCol={{ span: 10 }}
+        onFinish={search}
+        onFinishFailed={(err) => console.error(err.message)}
+        autoCapitalize="off"
+        autoCorrect="off"
+        autoSave="off"
       >
-        <Input />
-      </Form.Item>
-      <Form.Item wrapperCol={{ offset: 11, span: 6 }}>
-        <Button disabled={loading} type="dashed" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item
+          label="Query"
+          name="query"
+          rules={[{ required: true, message: "Please enter a pokemon's name" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item wrapperCol={{ offset: 11, span: 6 }}>
+          <Button disabled={loading} type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </Togglable>
   );
 };
 
