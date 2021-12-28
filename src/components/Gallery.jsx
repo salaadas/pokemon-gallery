@@ -1,19 +1,7 @@
-import useWindowDimensions from '../hooks/useWindowDimensions';
+import { WrapperPage } from './Wrapper';
 
 const Gallery = () => {
-  const { width, height } = useWindowDimensions();
-
-  return (
-    <div
-      style={{
-        width,
-        height,
-        backgroundColor: '#90aaf5',
-      }}
-    >
-      gallery
-    </div>
-  );
+  return <WrapperPage>gallery</WrapperPage>;
 };
 
 export default Gallery;
