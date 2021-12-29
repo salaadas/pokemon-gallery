@@ -1,21 +1,13 @@
 import SearchBar from './SearchBar';
 import DisplayPokemon from './DisplayPokemon';
-import useWindowDimensions from '../hooks/useWindowDimensions';
+import { WrapperPage } from './Wrapper';
 
 const SearchAndDisplay = ({ state, setState }) => {
-  const { width, height } = useWindowDimensions();
-
   return (
-    <div
-      style={{
-        width,
-        height,
-        backgroundColor: '#90aaf5',
-      }}
-    >
+    <WrapperPage>
       <SearchBar loading={state.loading} setState={setState} />
       <DisplayPokemon state={state} />;
-    </div>
+    </WrapperPage>
   );
 };
 

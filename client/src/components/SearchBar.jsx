@@ -45,7 +45,10 @@ const SearchBar = ({ loading, setState }) => {
         >
           <Input />
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 11, span: 6 }}>
+        <Form.Item
+          wrapperCol={{ offset: 11, span: 6 }}
+          style={{ margin: 'auto' }}
+        >
           <Button disabled={loading} type="primary" htmlType="submit">
             submit
           </Button>
